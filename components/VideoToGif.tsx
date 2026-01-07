@@ -67,7 +67,10 @@ export default function VideoToGif() {
 
     // Lê o resultado
     const data = await ffmpeg.readFile('output.gif');
-    const url = URL.createObjectURL(new Blob([data], { type: 'image/gif' }));
+    
+    // CORREÇÃO AQUI: Adicionamos (data as any)
+    const url = URL.createObjectURL(new Blob([(data as any)], { type: 'image/gif' }));
+    
     setGifUrl(url);
     setIsLoading(false);
   };
