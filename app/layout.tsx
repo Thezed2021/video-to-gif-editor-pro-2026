@@ -19,11 +19,11 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={`${inter.className} bg-slate-950 text-slate-200 antialiased`}>
         
-        {/* 2. O SCRIPT NOVO VEM AQUI (Social Bar) */}
+        {/* No arquivo layout.tsx */}
         <Script 
-          src="https://pl28418542.effectivegatecpm.com/8b/ff/60/8bff60fb176e7885456182286c3e7271.js" 
-          strategy="afterInteractive"
-        />
+      src="https://pl28418542.effectivegatecpm.com/8b/ff/60/8bff60fb176e7885456182286c3e7271.js" 
+      strategy="lazyOnload" 
+/>
 
         {/* Barra de Navegação */}
         <nav className="w-full border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
