@@ -1,11 +1,38 @@
-import VideoToGif from '../components/VideoToGif';
-import ImageEditor from '../components/ImageEditor';
+'use client'; // Transforma a página em Client-Side para gerenciar o carregamento
+
+import dynamic from 'next/dynamic';
+
+// Carregamento Dinâmico (Lazy Loading) com SSR Desativado
+// Isso corrige o erro de build ao impedir que o servidor toque no FFmpeg
+const VideoToGif = dynamic(
+  () => import('../components/VideoToGif'), 
+  { 
+    ssr: false, // O segredo está aqui: Desativa renderização no servidor
+    loading: () => (
+      <div className="w-full h-64 bg-slate-900/50 rounded-lg flex items-center justify-center border border-slate-800 animate-pulse">
+        <p className="text-slate-400">Carregando Conversor...</p>
+      </div>
+    )
+  }
+);
+
+const ImageEditor = dynamic(
+  () => import('../components/ImageEditor'), 
+  { 
+    ssr: false,
+    loading: () => (
+        <div className="w-full h-64 bg-slate-900/50 rounded-lg flex items-center justify-center border border-slate-800 animate-pulse">
+          <p className="text-slate-400">Carregando Editor...</p>
+        </div>
+      )
+  }
+);
 
 export default function Home() {
   return (
     <main className="min-h-screen p-4 md:p-8 max-w-5xl mx-auto space-y-12">
       
-      {/* Cabeçalho de Marketing (SEO) */}
+      {/* Cabeçalho de Marketing */}
       <section className="text-center space-y-4 py-10">
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
           Edite e Converta. <br/>
